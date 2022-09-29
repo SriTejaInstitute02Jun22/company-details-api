@@ -25,4 +25,11 @@ public class CompanyServiceImpl implements CompanyService {
 		return "Company data successfully inserted.";
 	}
 
+	@Override
+	public CompanyDetails getCompanyDetailsByCompanyName(String companyName) {
+		logger.info("Company Name in Service Layer :: "+companyName);
+		CompanyDetails response = companyRepository.findByCompanyName(companyName);
+		return response;
+	}
+
 }

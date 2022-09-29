@@ -49,7 +49,7 @@ public class CompanyController {
 	/**
 	 * get the company details based on company Id
 	 * @param companyId
-	 * @return companyDetails
+	 * @return string
 	 * */
 	@GetMapping("/get-company-details/{companyId}")
 	public String  getCompanyDetails(@PathVariable int companyId) {
@@ -106,7 +106,11 @@ public class CompanyController {
 		
 	}
 	
-	
+	/**
+	 * add the company details using post method
+	 * @param companyDetails
+	 * @return string - response
+	 * */
 	@PostMapping("/add-company-details")
 	public String insertCompanyDetails(@RequestBody CompanyDetails companyDetails) {
 		logger.info("Company Details in Controller Layer:: "+companyDetails);
@@ -115,6 +119,18 @@ public class CompanyController {
 		
 		return response;
 		
+	}
+	
+	/**
+	 * get the company details based on company name
+	 * @param companyName
+	 * @return CompanyDetails
+	 * */
+	@GetMapping("/company-details/{companyName}")
+	public CompanyDetails getCompanyDetailsByCompanyName(@PathVariable() String companyName) {
+		logger.info("Company Name in Controller Layer :: "+companyName);
+		CompanyDetails response = companyService.getCompanyDetailsByCompanyName(companyName);
+		return response;
 	}
 	
 }
