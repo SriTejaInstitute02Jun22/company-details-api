@@ -7,4 +7,6 @@ public interface CompanyService {
 	public String insertCompanyDetails(CompanyDetails companyDetails);
 
 	public CompanyDetails getCompanyDetailsByCompanyName(String companyName);
+
+	public CompanyDetails getCompanyDetailsBasedOnEmailAndMobile(String email, String mobile);
 }
