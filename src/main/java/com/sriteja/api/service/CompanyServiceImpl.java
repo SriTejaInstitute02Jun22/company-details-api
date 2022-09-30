@@ -32,4 +32,11 @@ public class CompanyServiceImpl implements CompanyService {
 		return response;
 	}
 
+	@Override
+	public CompanyDetails getCompanyDetailsBasedOnEmailAndMobile(String email, String mobile) {
+		 logger.info("Email = "+email +" Mobile = "+mobile+" in Service al Layer..");
+		CompanyDetails response = companyRepository.findByEmailAndMobile(email,mobile); //method calling
+		return response;
+	}
+
 }

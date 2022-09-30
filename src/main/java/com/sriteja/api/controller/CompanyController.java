@@ -127,10 +127,23 @@ public class CompanyController {
 	 * @return CompanyDetails
 	 * */
 	@GetMapping("/company-details/{companyName}")
-	public CompanyDetails getCompanyDetailsByCompanyName(@PathVariable() String companyName) {
+	public CompanyDetails getCompanyDetailsByCompanyName(@PathVariable("companyName") String companyName) {
 		logger.info("Company Name in Controller Layer :: "+companyName);
 		CompanyDetails response = companyService.getCompanyDetailsByCompanyName(companyName);
 		return response;
 	}
 	
+	
+	/**
+	 * get the Company Details based on email and mobile number
+	 * @param email,
+	 * @param mobile,
+	 * @return CompanyDetails
+	 * */
+	 @GetMapping("/get-company-details-based-on-emailandmobile/{email}/{mobile}")
+	 public CompanyDetails getCompanyDetailsBasedOnEmailAndMobile(@PathVariable String email, @PathVariable String mobile) {
+		 logger.info("Email = "+email +" Mobile = "+mobile+" in Controller Layer..");
+		 CompanyDetails response = companyService.getCompanyDetailsBasedOnEmailAndMobile(email, mobile); //method calling
+		 return response;
+	 }
 }
