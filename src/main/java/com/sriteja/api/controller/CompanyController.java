@@ -146,4 +146,14 @@ public class CompanyController {
 		 CompanyDetails response = companyService.getCompanyDetailsBasedOnEmailAndMobile(email, mobile); //method calling
 		 return response;
 	 }
+	 
+	 
+	 @PutMapping("/update-company-details/{email}/{companyName}")
+	 public String updateComapnyDetailsBasedOnEmailAndCompanyName(@RequestBody CompanyDetails companyDetails,@PathVariable String email, @PathVariable String companyName) {
+		 logger.info("companyDetails:: "+companyDetails);
+		 logger.info("Email = "+email +" CompanyName = "+companyName+" in Controller Layer..");
+		 String response = companyService.updateComapnyDetailsBasedOnEmailAndCompanyName(companyDetails, email, companyName);
+		 
+		 return response;
+	 }
 }

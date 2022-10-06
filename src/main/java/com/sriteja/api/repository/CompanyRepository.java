@@ -16,7 +16,8 @@ public interface CompanyRepository extends JpaRepository<CompanyDetails, Integer
 
 	@Query(value = "select * from company c where c.email=:email and c.mobile=:mobile", nativeQuery = true)
 	CompanyDetails findByEmailAndMobile(@Param("email") String email, @Param("mobile") String mobile);
-	
-	
+
+	@Query(value = "select * from company c where c.email =:email  and c.company_name =:companyName", nativeQuery = true)
+	CompanyDetails findByEmailAndCompnayName(@Param("email")String email, @Param("companyName")String companyName);
 	
 }

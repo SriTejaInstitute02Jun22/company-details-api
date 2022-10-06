@@ -1,6 +1,8 @@
 package com.sriteja.api.service;
 
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +36,29 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public CompanyDetails getCompanyDetailsBasedOnEmailAndMobile(String email, String mobile) {
-		 logger.info("Email = "+email +" Mobile = "+mobile+" in Service al Layer..");
+		 logger.info("Email = "+email +" Mobile = "+mobile+" in Service Layer..");
 		CompanyDetails response = companyRepository.findByEmailAndMobile(email,mobile); //method calling
 		return response;
 	}
+
+	@Override
+	public String updateComapnyDetailsBasedOnEmailAndCompanyName(CompanyDetails companyDetails, String email,
+			String companyName) {
+		 logger.info("companyDetails:: "+companyDetails);
+		 logger.info("Email = "+email +" CompanyName = "+companyName+" in Service Layer..");
+		 String response =null;
+		CompanyDetails company = companyRepository.findByEmailAndCompnayName(email, companyName);
+		if(Optional.ofNullable(company).isPresent()) {
+			company.setGst(companyDetails.getGst());
+			company.setTurnOver(companyDetails.getTurnOver());
+			
+			companyRepository.save(company);
+			return response = "Company details updated successfully based on company emailid "+email+ "and company name "+companyName;
+		}else{
+			return response = "we don't have any matching data with Email id "+email+" Company Name "+companyName;
+		}
+	}
+
+	
 
 }
