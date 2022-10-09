@@ -12,4 +12,6 @@ public interface CompanyService {
 
 	public String updateComapnyDetailsBasedOnEmailAndCompanyName(CompanyDetails companyDetails, String email,
 			String companyName);
+
+	public String deleteCompanyDetailsBasedOnCompanyIdAndCompanyName(int companyId, String companyName);
 }

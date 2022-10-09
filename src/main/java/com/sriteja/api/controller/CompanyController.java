@@ -147,7 +147,13 @@ public class CompanyController {
 		 return response;
 	 }
 	 
-	 
+	 /***
+	  * update the company data based on email and company name
+	  * @param companyDetails
+	  * @param email
+	  * @param companyName
+	  * @return response
+	  * */
 	 @PutMapping("/update-company-details/{email}/{companyName}")
 	 public String updateComapnyDetailsBasedOnEmailAndCompanyName(@RequestBody CompanyDetails companyDetails,@PathVariable String email, @PathVariable String companyName) {
 		 logger.info("companyDetails:: "+companyDetails);
@@ -155,5 +161,12 @@ public class CompanyController {
 		 String response = companyService.updateComapnyDetailsBasedOnEmailAndCompanyName(companyDetails, email, companyName);
 		 
 		 return response;
+	 }
+	 
+	 
+	 @DeleteMapping("/delete-company-details/{companyId}/{companyName}")
+	 public String deleteCompanyDetailsBasedOnCompanyIdAndCompanyName(@PathVariable int companyId, @PathVariable String companyName) {
+		 logger.info("Company Id = "+companyId +" CompanyName = "+companyName+" in Controller Layer..");
+		return companyService.deleteCompanyDetailsBasedOnCompanyIdAndCompanyName(companyId, companyName);
 	 }
 }

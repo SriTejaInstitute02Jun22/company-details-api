@@ -3,6 +3,8 @@ package com.sriteja.api.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,16 @@ public class CompanyServiceImpl implements CompanyService {
 		}else{
 			return response = "we don't have any matching data with Email id "+email+" Company Name "+companyName;
 		}
+	}
+
+	@Transactional
+	@Override
+	public String deleteCompanyDetailsBasedOnCompanyIdAndCompanyName(int companyId, String companyName) {
+		 logger.info("Company Id = "+companyId +" CompanyName = "+companyName+" in Service Layer..");
+		
+		 companyRepository.deleteByCompanyIdAndCompanyName(companyId, companyName);
+		 
+		return "Company data deleted based on company id = "+companyId+" and company name = "+companyName+".";
 	}
 
 	
