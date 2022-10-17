@@ -12,14 +12,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sriteja.api.bean.CompanyDetailsRequest;
+import com.sriteja.api.bean.CompanyDetailsResponse;
 import com.sriteja.api.model.CompanyDetails;
 import com.sriteja.api.service.CompanyService;
+import com.sriteja.api.service.EmployeeSerivce;
 /**
  * this call is using for company details data
  * */
-@RestController
+@RestController			//@Controller + @ResponseBody	= @RestController	
 @RequestMapping("/api")
 public class CompanyController {
 
@@ -29,8 +33,12 @@ public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
 	
+	private EmployeeSerivce employeeSerivce;
 	
-	
+	@Autowired
+	public CompanyController(EmployeeSerivce employeeSerivce) {
+		this.employeeSerivce = employeeSerivce;
+	}
 	
 	/**
 	 * insert the company details 
@@ -168,5 +176,19 @@ public class CompanyController {
 	 public String deleteCompanyDetailsBasedOnCompanyIdAndCompanyName(@PathVariable int companyId, @PathVariable String companyName) {
 		 logger.info("Company Id = "+companyId +" CompanyName = "+companyName+" in Controller Layer..");
 		return companyService.deleteCompanyDetailsBasedOnCompanyIdAndCompanyName(companyId, companyName);
+	 }
+	 
+	 
+	 /**
+	  * Get Employee data based on employee id.
+	  * @param companyDetailsRequest
+	  * @return companyDetailsResponse
+	  * **/
+	 @GetMapping("/get-employee")	
+	 public CompanyDetailsResponse getEmployeeData(@RequestBody(required = true) CompanyDetailsRequest companyDetailsRequest) {
+		 logger.info("CompanyDetailsRequest.........."+companyDetailsRequest+" in Controller Layer..");
+		 CompanyDetailsResponse response = employeeSerivce.getEmployeeDataByEmployeeId(companyDetailsRequest);
+		 return response;
+		 
 	 }
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sriteja.api.model.CompanyDetails;
 
-
+@Repository
 public interface CompanyRepository extends JpaRepository<CompanyDetails, Integer> {
 
 	//JPQL(Java Persistence query language)
