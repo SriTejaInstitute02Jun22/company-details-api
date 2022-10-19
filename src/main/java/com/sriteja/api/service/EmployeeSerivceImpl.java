@@ -37,11 +37,11 @@ public class EmployeeSerivceImpl implements EmployeeSerivce {
 		//calling the employee-details-api application
 		String url = "http://localhost:2222/api/get-employee-details-based-on-employeeid/"+employeeId;
 		
-		//HttpHeaders object
+		//HttpHeaders object, it can contain only header values 
 		 HttpHeaders headers = new HttpHeaders();
 	     headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 	     
-	     //HttpEnitty object
+	     //HttpEnitty object , it can contain header values and request body.
 	     HttpEntity<String> entity = new HttpEntity<String>(headers);
 	      
 	     //calling to employee-details-api
