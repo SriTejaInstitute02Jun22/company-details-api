@@ -9,4 +9,9 @@ public interface CompanyService {
 	public CompanyDetails getCompanyDetailsByCompanyName(String companyName);
 
 	public CompanyDetails getCompanyDetailsBasedOnEmailAndMobile(String email, String mobile);
+
+	public String updateComapnyDetailsBasedOnEmailAndCompanyName(CompanyDetails companyDetails, String email,
+			String companyName);
+
+	public String deleteCompanyDetailsBasedOnCompanyIdAndCompanyName(int companyId, String companyName);
 }
