@@ -1,5 +1,7 @@
 package com.sriteja.api.service;
 
+import com.sriteja.api.bean.CompanyDetailsRequest;
+import com.sriteja.api.bean.CompanyDetailsResponse;
 import com.sriteja.api.model.CompanyDetails;
 
 public interface CompanyService {
@@ -14,4 +16,5 @@ public interface CompanyService {
 			String companyName);
 
 	public String deleteCompanyDetailsBasedOnCompanyIdAndCompanyName(int companyId, String companyName);
+
 }

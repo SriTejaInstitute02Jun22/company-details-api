@@ -8,8 +8,12 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.sriteja.api.bean.CompanyDetailsRequest;
+import com.sriteja.api.bean.CompanyDetailsResponse;
 import com.sriteja.api.model.CompanyDetails;
 import com.sriteja.api.repository.CompanyRepository;
 
@@ -21,6 +25,10 @@ public class CompanyServiceImpl implements CompanyService {
 	@Autowired
 	private CompanyRepository companyRepository;
 
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	
 	@Override
 	public String insertCompanyDetails(CompanyDetails companyDetails) {
 		logger.info("Company Details in Service Layer :: " + companyDetails);
@@ -71,6 +79,5 @@ public class CompanyServiceImpl implements CompanyService {
 		return "Company data deleted based on company id = "+companyId+" and company name = "+companyName+".";
 	}
 
-	
 
 }

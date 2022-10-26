@@ -7,4 +7,6 @@ public interface EmployeeSerivce {
 
 	CompanyDetailsResponse getEmployeeDataByEmployeeId(CompanyDetailsRequest companyDetailsRequest);
 
+	CompanyDetailsResponse createEmployeeData(CompanyDetailsRequest companyDetailsRequest);
+
 }

@@ -1,13 +1,28 @@
 package com.sriteja.api.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class EmployeeDetails {
 
+	@JsonProperty("employee_id")
 	private int employeeId;
+	
+	@JsonProperty("employee_name")
 	private String employeeName;
+	
+	@JsonProperty("employee_mobile")
 	private String employeeMobile;
+	
+	@JsonProperty("employee_email")
 	private String employeeEmail;
+	
+	@JsonProperty("employee_salary")
 	private Double employeeSalary;
+	
+	@JsonProperty("employee_dep")
 	private String employeeDep;
+	
+	@JsonProperty("employee_joining_date")
 	private String employeeJoiningDate;
 	
 	

@@ -3,6 +3,8 @@ package com.sriteja.api.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -185,10 +187,23 @@ public class CompanyController {
 	  * @return companyDetailsResponse
 	  * **/
 	 @GetMapping("/get-employee")	
-	 public CompanyDetailsResponse getEmployeeData(@RequestBody(required = true) CompanyDetailsRequest companyDetailsRequest) {
+	 public ResponseEntity<CompanyDetailsResponse> getEmployeeData(@RequestBody(required = true) CompanyDetailsRequest companyDetailsRequest) {
 		 logger.info("CompanyDetailsRequest.........."+companyDetailsRequest+" in Controller Layer..");
 		 CompanyDetailsResponse response = employeeSerivce.getEmployeeDataByEmployeeId(companyDetailsRequest);
-		 return response;
+		 return new ResponseEntity<CompanyDetailsResponse>(response, HttpStatus.OK);
 		 
 	 }
+	 
+	 /**
+	  * Create the Employee Data
+	  * @param 
+	  * */
+	 @PostMapping("/create-employee-data")
+	 public ResponseEntity<CompanyDetailsResponse> createEmployeeData(@RequestBody(required = true) CompanyDetailsRequest companyDetailsRequest){
+		 logger.info("Controller Layer...CompanyDetailsRequest Data :: "+companyDetailsRequest);
+		 CompanyDetailsResponse response =  employeeSerivce.createEmployeeData(companyDetailsRequest);
+		 return new ResponseEntity<CompanyDetailsResponse>(response, HttpStatus.CREATED);
+	 }
+	 
+	 
 }
